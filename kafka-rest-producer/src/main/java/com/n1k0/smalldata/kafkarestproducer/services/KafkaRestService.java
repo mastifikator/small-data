@@ -11,24 +11,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class KafkaProducerRestService {
+public class KafkaRestService {
 
-    private final KafkaProducerService kafkaProducerService;
+    private final KafkaRestProducerService kafkaRestProducerService;
 
     @Autowired
-    public KafkaProducerRestService(KafkaProducerService kafkaProducerService) {
-        this.kafkaProducerService = kafkaProducerService;
+    public KafkaRestService(KafkaRestProducerService kafkaRestProducerService) {
+        this.kafkaRestProducerService = kafkaRestProducerService;
     }
 
     @PostMapping("/call")
     ResponseEntity<Void> sendCall(@RequestBody Call call){
-        kafkaProducerService.produceCall(call);
+        kafkaRestProducerService.produceCall(call);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/message")
     ResponseEntity<Void> sendMessage(@RequestBody Message message){
-        kafkaProducerService.produceMessage(message);
+        kafkaRestProducerService.produceMessage(message);
         return ResponseEntity.ok().build();
     }
 

@@ -1,7 +1,7 @@
-package com.n1k0.smalldata.kafkarestproducer.config;
+package com.n1k0.smalldata.kafkaperiodicproducer.config;
 
-import com.n1k0.smalldata.kafkarestproducer.models.Call;
-import com.n1k0.smalldata.kafkarestproducer.models.Message;
+import com.n1k0.smalldata.kafkaperiodicproducer.models.Call;
+import com.n1k0.smalldata.kafkaperiodicproducer.models.Message;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 
 @Configuration
-public class KafkaProducerConfig {
+public class KafkaPeriodicProducerConfig {
 
     @Value("${kafka.bootstrapAddress}")
     private String boostrapAddress;

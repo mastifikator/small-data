@@ -11,7 +11,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Configuration
-public class KafkaProducerService {
+public class KafkaRestProducerService {
 
     @Value("${kafka.topics.calls}")
     private String topicCallsName;
@@ -23,7 +23,7 @@ public class KafkaProducerService {
     private final KafkaTemplate<Long, Message> kafkaMessageTemplate;
 
     @Autowired
-    public KafkaProducerService(KafkaTemplate<Long, Call> kafkaCallTemplate,
+    public KafkaRestProducerService(KafkaTemplate<Long, Call> kafkaCallTemplate,
                                 KafkaTemplate<Long, Message> kafkaMessageTemplate){
         this.kafkaCallTemplate = kafkaCallTemplate;
         this.kafkaMessageTemplate = kafkaMessageTemplate;
