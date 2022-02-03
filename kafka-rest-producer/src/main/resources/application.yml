@@ -3,5 +3,5 @@ kafka:
   producer:
     id: 1
   topics:
-    calls: example-topic
-    messages: example-topic
+    calls: calls
+    messages: messages

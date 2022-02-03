@@ -30,12 +30,12 @@ public class KafkaPeriodicProducerService {
         this.kafkaPeriodicService = kafkaPeriodicService;
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelayString = "${generator.messagesDelay}")
     public void scheduleSendMessage(){
         kafkaPeriodicService.produceMessage(MessageGenerator.generate(telephoneRandomCount, amountWordInMessage, dictionary));
     }
 
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(fixedDelayString = "${generator.callsDelay}")
     public void scheduleSendCall(){
         kafkaPeriodicService.produceCall(CallGenerator.generate(telephoneRandomCount));
     }

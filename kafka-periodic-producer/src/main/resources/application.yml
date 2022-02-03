@@ -3,11 +3,13 @@ kafka:
   producer:
     id: 2
   topics:
-    calls: test
-    messages: test
+    calls: calls
+    messages: messages
 generator:
   telephoneRandomCount: 7
   amountWordInMessage: 10
+  messagesDelay: 7000
+  callsDelay: 5000
   dictionary: >
     Ashraf
     ashrafi
@@ -122,6 +124,7 @@ generator:
     nonimmanent
     nonimmanently
     nonimmateriality
+    putin
     people-born
     peopled
     people-devouring
@@ -155,6 +158,7 @@ generator:
     protoneuron
     protoneurone
     protoneutron
+    russian
     scegger
     scelalgia
     scelerat
@@ -277,6 +281,7 @@ generator:
     virgater
     virgates
     virgation
+    vor
     whackers
     whacky
     whackier
@@ -289,6 +294,7 @@ generator:
     whafabout
     Whalan
     Whale
+    fuck
     whaleback
     whale-backed
     whalebacker

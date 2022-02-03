@@ -2,6 +2,8 @@ package com.n1k0.smalldata.kafkarestproducer.services;
 
 import com.n1k0.smalldata.kafkarestproducer.models.Call;
 import com.n1k0.smalldata.kafkarestproducer.models.Message;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Configuration
 public class KafkaRestProducerService {
+    Logger LOG = LoggerFactory.getLogger(KafkaRestProducerService.class);
 
     @Value("${kafka.topics.calls}")
     private String topicCallsName;
@@ -35,12 +38,12 @@ public class KafkaRestProducerService {
         future.addCallback(new ListenableFutureCallback<SendResult<Long, Call>>() {
             @Override
             public void onFailure(Throwable ex) {
-                System.out.println("Unable to send call=[" + call + "] due to : " + ex.getMessage());
+                LOG.debug("Unable to send call=[" + call + "] due to : " + ex.getMessage());
             }
 
             @Override
             public void onSuccess(SendResult<Long, Call> result) {
-                System.out.println("Sent call=[" + call + "] with offset=[" +
+                LOG.debug("Sent call=[" + call + "] with offset=[" +
                         result.getRecordMetadata().offset() + "]");
             }
         });
@@ -52,12 +55,12 @@ public class KafkaRestProducerService {
         future.addCallback(new ListenableFutureCallback<SendResult<Long, Message>>() {
             @Override
             public void onFailure(Throwable ex) {
-                System.out.println("Unable to send message=[" + message + "] due to : " + ex.getMessage());
+                LOG.debug("Unable to send message=[" + message + "] due to : " + ex.getMessage());
             }
 
             @Override
             public void onSuccess(SendResult<Long, Message> result) {
-                System.out.println("Sent message=[" + message + "] with offset=[" +
+                LOG.debug("Sent message=[" + message + "] with offset=[" +
                         result.getRecordMetadata().offset() + "]");
             }
         });
