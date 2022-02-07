@@ -1,7 +1,7 @@
 package com.n1k0.smalldata.kafkarestproducer.services;
 
 import com.n1k0.smalldata.kafkarestproducer.models.Call;
-import com.n1k0.smalldata.kafkarestproducer.models.Message;
+import com.n1k0.smalldata.kafkarestproducer.models.Sms;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +23,11 @@ public class KafkaRestProducerService {
     private String topicMessagesName;
 
     private final KafkaTemplate<Long, Call> kafkaCallTemplate;
-    private final KafkaTemplate<Long, Message> kafkaMessageTemplate;
+    private final KafkaTemplate<Long, Sms> kafkaMessageTemplate;
 
     @Autowired
     public KafkaRestProducerService(KafkaTemplate<Long, Call> kafkaCallTemplate,
-                                KafkaTemplate<Long, Message> kafkaMessageTemplate){
+                                KafkaTemplate<Long, Sms> kafkaMessageTemplate){
         this.kafkaCallTemplate = kafkaCallTemplate;
         this.kafkaMessageTemplate = kafkaMessageTemplate;
     }
@@ -49,18 +49,18 @@ public class KafkaRestProducerService {
         });
     }
 
-    public void produceMessage(Message message){
-        ListenableFuture<SendResult<Long, Message>> future = kafkaMessageTemplate.send(topicMessagesName, message);
+    public void produceMessage(Sms sms){
+        ListenableFuture<SendResult<Long, Sms>> future = kafkaMessageTemplate.send(topicMessagesName, sms);
 
-        future.addCallback(new ListenableFutureCallback<SendResult<Long, Message>>() {
+        future.addCallback(new ListenableFutureCallback<SendResult<Long, Sms>>() {
             @Override
             public void onFailure(Throwable ex) {
-                LOG.debug("Unable to send message=[" + message + "] due to : " + ex.getMessage());
+                LOG.debug("Unable to send message=[" + sms + "] due to : " + ex.getMessage());
             }
 
             @Override
-            public void onSuccess(SendResult<Long, Message> result) {
-                LOG.debug("Sent message=[" + message + "] with offset=[" +
+            public void onSuccess(SendResult<Long, Sms> result) {
+                LOG.debug("Sent message=[" + sms + "] with offset=[" +
                         result.getRecordMetadata().offset() + "]");
             }
         });

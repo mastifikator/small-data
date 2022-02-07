@@ -1,7 +1,7 @@
 package com.n1k0.smalldata.kafkarestproducer.services;
 
 import com.n1k0.smalldata.kafkarestproducer.models.Call;
-import com.n1k0.smalldata.kafkarestproducer.models.Message;
+import com.n1k0.smalldata.kafkarestproducer.models.Sms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +27,8 @@ public class KafkaRestService {
     }
 
     @PostMapping("/message")
-    ResponseEntity<Void> sendMessage(@RequestBody Message message){
-        kafkaRestProducerService.produceMessage(message);
+    ResponseEntity<Void> sendMessage(@RequestBody Sms sms){
+        kafkaRestProducerService.produceMessage(sms);
         return ResponseEntity.ok().build();
     }
 

@@ -1,7 +1,7 @@
 package com.n1k0.smalldata.kafkaperiodicproducer.config;
 
 import com.n1k0.smalldata.kafkaperiodicproducer.models.Call;
-import com.n1k0.smalldata.kafkaperiodicproducer.models.Message;
+import com.n1k0.smalldata.kafkaperiodicproducer.models.Sms;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +32,7 @@ public class KafkaPeriodicProducerConfig {
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         configProps.put(ProducerConfig.CLIENT_ID_CONFIG, kafkaProducerId);
+        configProps.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
         return configProps;
     }
 
@@ -41,7 +42,7 @@ public class KafkaPeriodicProducerConfig {
     }
 
     @Bean
-    public ProducerFactory<Long, Message> producerMessageFactory(){
+    public ProducerFactory<Long, Sms> producerMessageFactory(){
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
@@ -51,7 +52,7 @@ public class KafkaPeriodicProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<Long, Message> kafkaMessageTemplate(){
+    public KafkaTemplate<Long, Sms> kafkaMessageTemplate(){
         return  new KafkaTemplate<>(producerMessageFactory());
     }
 }

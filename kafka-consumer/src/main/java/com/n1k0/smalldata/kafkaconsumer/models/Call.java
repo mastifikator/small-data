@@ -1,19 +1,17 @@
-package com.n1k0.smalldata.kafkarestproducer.models;
+package com.n1k0.smalldata.kafkaconsumer.models;
 
-public class Message {
+public class Call {
     private String callerNumber;
     private String responderNumber;
-    private String messageText;
     private String callDate;
     private String callTime;
 
-    public Message(){
+    public Call(){
     }
 
-    public Message(String callerNumber, String responderNumber, String messageText, String callDate, String callTime) {
+    public Call(String callerNumber, String responderNumber, String callDate, String callTime) {
         this.callerNumber = callerNumber;
         this.responderNumber = responderNumber;
-        this.messageText = messageText;
         this.callDate = callDate;
         this.callTime = callTime;
     }
@@ -50,19 +48,10 @@ public class Message {
         this.callTime = callTime;
     }
 
-    public String getMessageText() {
-        return messageText;
-    }
-
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
-    }
-
     @Override
     public String toString() {
         return "the subscriber " + callerNumber +
-                " send message " + messageText +
-                " to " + responderNumber +
+                " calls " + responderNumber +
                 " on " + callDate +
                 " at " + callTime;
     }

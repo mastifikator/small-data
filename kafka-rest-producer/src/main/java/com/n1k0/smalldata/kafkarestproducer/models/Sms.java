@@ -1,16 +1,16 @@
-package com.n1k0.smalldata.kafkaperiodicproducer.models;
+package com.n1k0.smalldata.kafkarestproducer.models;
 
-public class Message {
+public class Sms {
     private String callerNumber;
     private String responderNumber;
     private String messageText;
     private String callDate;
     private String callTime;
 
-    public Message(){
+    public Sms(){
     }
 
-    public Message(String callerNumber, String responderNumber, String messageText, String callDate, String callTime) {
+    public Sms(String callerNumber, String responderNumber, String messageText, String callDate, String callTime) {
         this.callerNumber = callerNumber;
         this.responderNumber = responderNumber;
         this.messageText = messageText;

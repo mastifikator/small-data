@@ -1,0 +1,6 @@
+kafka:
+  bootstrapAddress: 172.16.215.62:9092
+  groupId: 1
+  topics:
+    calls: calls
+    messages: messages
