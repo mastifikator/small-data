@@ -19,6 +19,7 @@
         <module>kafka-rest-producer</module>
         <module>kafka-periodic-producer</module>
         <module>kafka-consumer</module>
+        <module>kafka-flink-consumer</module>
     </modules>
 
     <properties>
